@@ -23,14 +23,7 @@ module.exports = createTransformer({
 			},
 		],
 		'@babel/plugin-proposal-class-properties',
-		[
-			'auto-import',
-			{
-				declarations: [
-					{ default: 'Preact', members: ['h', 'Fragment'], path: 'preact' },
-				],
-			},
-		],
+		'babel-plugin-transform-import-meta',
 	],
 	babelrc: false,
 	configFile: false,

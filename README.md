@@ -5,7 +5,7 @@ Jest preset containing all required configuration for writing tests for [preact]
 Features:
 
 - Transpiles JSX to `h()`
-- Aaliases for `"react"` imports to point to `preact/compat`
+- Aliases for `"react"` imports to point to `preact/compat`
 - Automatically serialize Preact `VNodes` in snapshots
 - Stub style imports (`.css`, `.less`, `.sass/scss`, etc)
 - Add typeahead preview for filtering in jest's watch mode

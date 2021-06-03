@@ -1,6 +1,9 @@
 const babelJest = require('babel-jest');
 
-module.exports = babelJest.createTransformer({
+const createTransformer =
+	babelJest.createTransformer || babelJest.default.createTransformer;
+
+module.exports = createTransformer({
 	presets: [
 		[
 			'@babel/preset-typescript',
@@ -9,7 +12,10 @@ module.exports = babelJest.createTransformer({
 				jsxPragmaFrag: 'Fragment',
 			},
 		],
-		'@babel/preset-env',
+		[
+			'@babel/preset-env',
+			{ useBuiltIns: 'entry', corejs: '2', targets: { node: 'current' } },
+		],
 	],
 	plugins: [
 		[
@@ -20,6 +26,24 @@ module.exports = babelJest.createTransformer({
 			},
 		],
 		'@babel/plugin-proposal-class-properties',
+		[
+			'auto-import',
+			{
+				declarations: [
+					{ default: 'Preact', members: ['h', 'Fragment'], path: 'preact' },
+				],
+			},
+		],
+		// Replace import.meta
+		function () {
+			return {
+				visitor: {
+					MetaProperty(path) {
+						path.replaceWithSourceString('process');
+					},
+				},
+			};
+		},
 	],
 	babelrc: false,
 	configFile: false,

@@ -1,7 +1,4 @@
-import { Fragment, FunctionalComponent } from 'preact';
-
-// @ts-ignore
-const foo = import.meta.env.FOO;
+import { h, Fragment, FunctionalComponent } from 'preact';
 
 describe('serializer', () => {
 	it('should serialize simple component', () => {
